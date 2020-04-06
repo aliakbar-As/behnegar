@@ -18,7 +18,7 @@ const login = (navigation) => {
                     index: 1,
                     routes: [{
                         name: 'TabNavigator',
-                        params: { user: 'jane' },
+                        params: { user: 'splash' },
                     },],
                 }));
             } else {
@@ -26,7 +26,7 @@ const login = (navigation) => {
                     index: 1,
                     routes: [{
                         name: 'Login',
-                        params: { user: 'jane' },
+                        params: { user: 'spalsh' },
                     },],
                 }));
             };

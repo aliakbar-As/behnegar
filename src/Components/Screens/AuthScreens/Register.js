@@ -56,7 +56,7 @@ export default RegisterScreen = ({ navigation }) => {
                               index: 1,
                               routes: [{
                                   name: 'TabNavigator',
-                                  params: { user: 'jane' },
+                                  params: { user: 'register' },
                                 },],
                             }));
                         break;
