@@ -97,6 +97,7 @@ export default RegisterScreen = ({ navigation }) => {
                     value={userInfo.tel}
                     onChangeText={tel => fillFormData('tel', tel)}
                     title={"موبایل"}
+                    maxLength={11}
                     keyboardType={'numeric'}
                     iconOnclick={() => fillFormData('tel', '')}
                     icon={'md-close'}
