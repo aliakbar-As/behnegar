@@ -16,7 +16,7 @@ export default RouterComponent = () => {
         <NavigationContainer>
 
             <Stack.Navigator
-                initialRouteName="Login"
+                initialRouteName="Splash"
                 headerMode="none"
                 mode={'card'}
             >
