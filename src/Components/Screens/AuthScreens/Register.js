@@ -38,7 +38,7 @@ export default RegisterScreen = ({ navigation }) => {
         let password = userInfo.password;
         if (email === '' || password === '') {
             Alert.alert('fill data');
-        } else {
+        } else { 
             AuthStore.submitUserInformation(userInfo).then(data => {
                 switch (data) {
                     case 422:
@@ -52,12 +52,11 @@ export default RegisterScreen = ({ navigation }) => {
                         break;
                     case 200:
                         Alert.alert('', 'resister success');
-                        navigation.navigate('TabNavigator');
                         navigation.dispatch(CommonActions.reset({
                               index: 1,
                               routes: [{
                                   name: 'TabNavigator',
-                                  params: { user: 'jane' },
+                                  params: { user: 'register' },
                                 },],
                             }));
                         break;
@@ -166,4 +165,3 @@ const styles = EStyleSheet.create({
     },
 
 });
-

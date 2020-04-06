@@ -2,6 +2,7 @@ import { types, applySnapshot } from 'mobx-state-tree';
 import { Logger, request } from '../Utils';
 import { ApiClient } from '../assets/webServices/ApiClient';
 import { ApiHelper } from '../assets/webServices/ApiHelper';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 const authStore = types.model('authStore', {
@@ -25,11 +26,19 @@ const authStore = types.model('authStore', {
                 tel,
             } = userData;
 
-            return new Promise((resolve) => {
+            return new Promise(async (resolve, reject) => {
                 apiClient.post(ApiHelper.register,
-                    (error, response) => {
-                        this.changeLoading(false);
-                        resolve(response.status);
+                    (success, response) => {
+                        Logger(response, 'register');
+
+                        if (success) {
+                            this.changeLoading(false);
+                            this.storeData(response.token);
+                            resolve(response.status);
+                        } else {
+                            resolve(response.status);
+                            reject(response.status);
+                        };
                     }, {
                     email: email,
                     password: password,
@@ -39,6 +48,38 @@ const authStore = types.model('authStore', {
                 })
             });
 
+        },
+        submitUserRegisteredInformation(userData) {
+            this.changeLoading(true);
+            const {
+                email,
+                password,
+            } = userData;
+
+            return new Promise(async (resolve, reject) => {
+                apiClient.post(ApiHelper.login,
+                    (success, response) => {
+                        Logger(response, 'login');
+                        if (success) {
+                            this.changeLoading(false);
+                            this.storeData(response.token);
+                            resolve(response.status);
+                        } else {
+                            resolve(response.status);
+                            reject(response.status);
+                        };
+                    }, {
+                    email: email,
+                    password: password,
+                })
+            });
+        },
+        async storeData(value) {
+            try {
+                await AsyncStorage.setItem('@token', value)
+            } catch (e) {
+                Logger(e, 'err');
+            };
         },
         changeLoading(value) {
             return self.loading = value;
