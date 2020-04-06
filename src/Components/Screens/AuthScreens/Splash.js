@@ -1,14 +1,42 @@
 import React, { useEffect, useContext } from 'react';
-import { View, Image, sl,Text } from 'react-native';
+import { View, Image, sl, Text } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 
 import { SafeView } from '../../Commons';
+import AsyncStorage from '@react-native-community/async-storage';
+import { Logger } from '../../../Utils';
+import { CommonActions } from '@react-navigation/native';
 
+const login = (navigation) => {
 
+    setTimeout(async () => {
+        AsyncStorage.getItem('@token', (error, result) => {
+            if (result !== null) {
+                Logger(result, 'token');
+                navigation.dispatch(CommonActions.reset({
+                    index: 1,
+                    routes: [{
+                        name: 'TabNavigator',
+                        params: { user: 'jane' },
+                    },],
+                }));
+            } else {
+                navigation.dispatch(CommonActions.reset({
+                    index: 1,
+                    routes: [{
+                        name: 'Login',
+                        params: { user: 'jane' },
+                    },],
+                }));
+            };
+        });
+    }, 3000);
+};
 export default Splash = ({ navigation }) => {
     useEffect(() => {
-       
+        login(navigation);
+
         return;
         AuthStore.initApplication().then((data) => {
             if (data) {
@@ -35,7 +63,7 @@ export default Splash = ({ navigation }) => {
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '$GREEN_COLOR',
         justifyContent: 'center',
         alignItems: 'center'
     },
