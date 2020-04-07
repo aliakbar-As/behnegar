@@ -3,10 +3,16 @@ import { View, Text, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from '../../../Components/Screens/MainScreens/Home';
+import {
+    PrintScreen,
+    HandoutUpload,
+} from '../../../Components/Screens/MainScreens/Add';
 import Icon from 'react-native-vector-icons/Entypo';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { createStackNavigator } from '@react-navigation/stack';
 
 const Tab = createBottomTabNavigator();
+const AddStack = createStackNavigator();
 
 
 function CartScreen() {
@@ -16,11 +22,14 @@ function CartScreen() {
         </View>
     );
 }
-function AddScreen() {
+function AddScreens() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Add!</Text>
-        </View>
+        <AddStack.Navigator
+            headerMode={'none'}
+        >
+            <AddStack.Screen name={'AddScreen'} component={PrintScreen} />
+            <AddStack.Screen name={'HandoutUpload'} component={HandoutUpload} />
+        </AddStack.Navigator>
     );
 }
 function chatScreen() {
@@ -100,7 +109,11 @@ export default TabNavigator = () => {
         >
             <Tab.Screen name="More" component={moreScreen} />
             <Tab.Screen name="Chats" component={chatScreen} />
-            <Tab.Screen name="Add" component={AddScreen} />
+            <Tab.Screen name="Add" component={AddScreens} options={{
+                tabBarLabel: 'Add',
+                tabBarVisible: false
+
+            }} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Home" component={Home} />
 

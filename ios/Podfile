@@ -74,6 +74,10 @@ target 'jozveh' do
 
   pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
   target 'jozvehTests' do
     inherit! :complete
     # Pods for testing

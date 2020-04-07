@@ -23,11 +23,14 @@ export const Input = ({
     secureTextEntry,
     iconOnclick,
     selectionColor,
-    forced
+    forced,
+    noTitle
 }) => {
     return (
         <View style={[styles.mainContainer, extraStyle]}>
-            <Text style={styles.titleStyle}>{title} <Text style={{color: 'red'}}>{forced ? '*' : ''}</Text></Text>
+            {noTitle ? null : 
+            <Text style={styles.titleStyle}>{title} <Text style={{color: 'red'}}>{forced ? '*' : ''}</Text></Text>}
+            
             <View style={[styles.container, style]}>
                 <TouchableOpacity onPress={iconOnclick}>
                     <Icon name={icon} size={20} color={EStyleSheet.value('$GRAY_COLOR')} />
