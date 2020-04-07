@@ -14,44 +14,84 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import { Header, Input, Button } from '../../Commons';
 import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Entypo';
-import { CommonActions  } from '@react-navigation/native';
+import { CommonActions } from '@react-navigation/native';
+import StoreContext from '../../../Stores';
 
 const widthScreen = Dimensions.get('window').width;
 const heightScreen = Dimensions.get('window').height;
 
 export default LoginScreen = ({ navigation }) => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [passwordVisible, setPasswordVisible] = useState(false);
+    const {AuthStore } = useContext(StoreContext);
+
     const [modalVisible, setmodalVisible] = useState(false);
+    const [userInfo, setUserInfo] = useState({
+        email: '',
+        password: '',
+        passwordVisible: false,
+    });
+
+    const fillUserData = (input, value) => {
+        setUserInfo({ ...userInfo, [input]: value });
+    };
+
+    const submitUserRegisteredInfo = () => {
+        let email = userInfo.email;
+        let password = userInfo.password;
+        if (email === '' || password === '') {
+            Alert.alert('fill data');
+        } else { 
+            AuthStore.submitUserRegisteredInformation(userInfo).then(data => {
+                switch (data) {
+                    case 422:
+                        Alert.alert('', 'validation error');
+                        break;
+                    case 404:
+                        Alert.alert('', 'user not found');
+                        break;
+                    case 403:
+                        Alert.alert('', 'password not correct');
+                        break;
+                    case 200:
+                        Alert.alert('', 'resister success');
+                        navigation.dispatch(CommonActions.reset({
+                              index: 1,
+                              routes: [{
+                                  name: 'TabNavigator',
+                                  params: { user: 'login' },
+                                },],
+                            }));
+                        break;
+                    default:
+                        console.log('default')
+                        break;
+                }
+            })
+        };
+    };
 
     return (
         <View style={styles.container}>
             <Header title={'ورود'} />
-            {/* <View style={{ backgroundColor: '#3AC745',marginTop: -20}}>
-                <Image
-                    style={{ height: 100, width: 100, }}
-                    source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSXnyMMkAf9-bSgeUwuAdPD86w_bbEbPWXH5A-B0-Co-ttfNHwB&usqp=CAU' }} />
-            </View> */}
 
             <ScrollView style={{ paddingHorizontal: 6 }}>
 
                 <Input
-                    value={email}
-                    onChangeText={email => setEmail(email)}
+                    value={userInfo.email}
+                    onChangeText={email => fillUserData('email', email)}
                     title={"ایمیل"}
                     icon={'md-close'}
                     keyboardType={'email-address'}
-                    iconOnclick={() => setEmail('')}
+                    iconOnclick={() => fillUserData('email', '')}
                     placeholder={'email@gmail.com'}
                 />
 
                 <Input
-                    secureTextEntry={!passwordVisible}
-                    value={password}
-                    icon={passwordVisible ? 'ios-eye' : 'ios-eye-off'}
-                    iconOnclick={() => setPasswordVisible(!passwordVisible)}
-                    onChangeText={password => setPassword(password)}
+                    secureTextEntry={!userInfo.passwordVisible}
+                    value={userInfo.password}
+                    forced
+                    icon={userInfo.passwordVisible ? 'ios-eye' : 'ios-eye-off'}
+                    iconOnclick={() => fillUserData('passwordVisible', !userInfo.passwordVisible)}
+                    onChangeText={password => fillUserData('password', password)}
                     title={"رمزعبور"}
                 />
 
@@ -65,20 +105,7 @@ export default LoginScreen = ({ navigation }) => {
 
                 <Button
                     text={"ورود"}
-                    onPress={() => {
-                        navigation.dispatch(
-                            CommonActions.reset({
-                              index: 1,
-                              routes: [
-                                {
-                                  name: 'TabNavigator',
-                                  params: { user: 'jane' },
-                                },
-                              ],
-                            })
-                          );
-                          
-                    }}
+                    onPress={() => submitUserRegisteredInfo()}
                     extraStyle={{ marginTop: 32 }}
                 />
 
@@ -116,14 +143,15 @@ export default LoginScreen = ({ navigation }) => {
                         </Text>
 
                         <Input
-                            value={email}
-                            onChangeText={email => setEmail(email)}
-                            iconOnclick={() => setEmail('')}
-                            icon={'md-close'}
+                            value={userInfo.email}
+                            onChangeText={email => fillUserData('email', email)}
                             title={"ایمیل"}
-                            placeholder={'email@gmail.com'}
+                            icon={'md-close'}
                             keyboardType={'email-address'}
+                            iconOnclick={() => fillUserData('email', '')}
+                            placeholder={'email@gmail.com'}
                         />
+
 
                         <Button
                             text={"ثبت درخواست"}
