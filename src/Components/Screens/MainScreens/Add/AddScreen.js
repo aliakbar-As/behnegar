@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import {
     View,
     Text,
-    Picker,
     Image,
     Dimensions,
     ScrollView,
@@ -12,6 +11,7 @@ import { Header, Input, Button } from '../../../Commons';
 import RNPickerSelect from 'react-native-picker-select';
 import Icon from 'react-native-vector-icons/AntDesign';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import { Picker } from '@react-native-community/picker';
 
 
 let booklatType = [

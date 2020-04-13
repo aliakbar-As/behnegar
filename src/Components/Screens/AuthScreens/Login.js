@@ -9,10 +9,11 @@ import {
     Modal,
     Dimensions,
     Alert,
+    TouchableHighlight, 
+    TouchableOpacity
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Header, Input, Button } from '../../Commons';
-import { TouchableHighlight, TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/Entypo';
 import { CommonActions } from '@react-navigation/native';
 import StoreContext from '../../../Stores';
@@ -21,7 +22,7 @@ const widthScreen = Dimensions.get('window').width;
 const heightScreen = Dimensions.get('window').height;
 
 export default LoginScreen = ({ navigation }) => {
-    const {AuthStore } = useContext(StoreContext);
+    const { AuthStore } = useContext(StoreContext);
 
     const [modalVisible, setmodalVisible] = useState(false);
     const [userInfo, setUserInfo] = useState({
@@ -39,7 +40,7 @@ export default LoginScreen = ({ navigation }) => {
         let password = userInfo.password;
         if (email === '' || password === '') {
             Alert.alert('fill data');
-        } else { 
+        } else {
             AuthStore.submitUserRegisteredInformation(userInfo).then(data => {
                 switch (data) {
                     case 422:
@@ -54,12 +55,12 @@ export default LoginScreen = ({ navigation }) => {
                     case 200:
                         Alert.alert('', 'resister success');
                         navigation.dispatch(CommonActions.reset({
-                              index: 1,
-                              routes: [{
-                                  name: 'TabNavigator',
-                                  params: { user: 'login' },
-                                },],
-                            }));
+                            index: 1,
+                            routes: [{
+                                name: 'TabNavigator',
+                                params: { user: 'login' },
+                            },],
+                        }));
                         break;
                     default:
                         console.log('default')

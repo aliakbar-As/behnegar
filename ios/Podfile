@@ -78,6 +78,10 @@ target 'jozveh' do
 
   pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
 
+  pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
+
   target 'jozvehTests' do
     inherit! :complete
     # Pods for testing

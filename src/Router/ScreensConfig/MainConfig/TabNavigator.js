@@ -6,6 +6,7 @@ import Home from '../../../Components/Screens/MainScreens/Home';
 import {
     PrintScreen,
     HandoutUpload,
+    ShoppingCart,
 } from '../../../Components/Screens/MainScreens/Add';
 import Icon from 'react-native-vector-icons/Entypo';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -29,6 +30,7 @@ function AddScreens() {
         >
             <AddStack.Screen name={'AddScreen'} component={PrintScreen} />
             <AddStack.Screen name={'HandoutUpload'} component={HandoutUpload} />
+            <AddStack.Screen name={'ShoppingCard'} component={ShoppingCart} />
         </AddStack.Navigator>
     );
 }
@@ -112,7 +114,6 @@ export default TabNavigator = () => {
             <Tab.Screen name="Add" component={AddScreens} options={{
                 tabBarLabel: 'Add',
                 tabBarVisible: false
-
             }} />
             <Tab.Screen name="Cart" component={CartScreen} />
             <Tab.Screen name="Home" component={Home} />
