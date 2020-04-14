@@ -27,8 +27,11 @@ export const HandoutUpload = ({ navigation }) => {
     const { FileUploadedStore } = useContext(StoreContext);
     const [fileLists, setFileLists] = useState([]);
     const [lastPdfFile, setlastPdfFile] = useState('');
+    const [lastPdfName, setLastPdfName] = useState('');
+    const [lastPdfSize, setlastPdfSize] = useState('');
     const [finalPdfUploaded, setfinalPdfUploaded] = useState('');
     const [modalVisible, setmodalVisible] = useState(false);
+
 
     const handleRemoveItem = (e, index) => {
         setFileLists(
@@ -63,6 +66,8 @@ export const HandoutUpload = ({ navigation }) => {
             }]);
             if (res.type === 'application/pdf') {
                 setlastPdfFile(res.uri);
+                setLastPdfName(res.name);
+                setlastPdfSize(res.size);
                 setmodalVisible(true)
             }
         } catch (err) {
@@ -173,6 +178,8 @@ export const HandoutUpload = ({ navigation }) => {
                                     'uri': filePath,
                                     'type': 'application/pdf',
                                     'numberOfPages': numberOfPages,
+                                    'name': lastPdfName,
+                                    'size': lastPdfSize,
                                 }]);
                             }}
                             onError={(error) => {
