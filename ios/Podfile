@@ -82,6 +82,8 @@ target 'jozveh' do
 
   pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'jozvehTests' do
     inherit! :complete
     # Pods for testing

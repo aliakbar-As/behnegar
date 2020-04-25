@@ -38,7 +38,7 @@ export const ShoppingCart = ({ route, navigation }) => {
                 <View style={styles.hdrContainer}>
                     <Text
                         onPress={() => navigation.pop()}
-                        style={styles.edtiTitle}>ویرایش</Text>
+                        style={[styles.edtiTitle, {color: '#30ADF2'}]}>ویرایش</Text>
 
                     <Text style={styles.edtiTitle}>{data.files.length} فایل</Text>
 
@@ -75,6 +75,7 @@ export const ShoppingCart = ({ route, navigation }) => {
 
             <Button
                 text={'تایید'}
+                onPress={() => navigation.navigate('Address')}
             />
         </View>
     );

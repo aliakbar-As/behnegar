@@ -14,3 +14,4 @@ export * from './CollapseBox';
 export * from './Loading';
 export * from './InAppNotification';
 export * from './SearchAndFilter';
+export * from './Line';

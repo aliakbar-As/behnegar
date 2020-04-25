@@ -10,6 +10,7 @@ EStyleSheet.build({
     $BLUE_COLOR: '#0a7fff',
     $YELLOW_COLOR: '#e7b538',
     $GRAY_COLOR: '#8b8e9f',
+    $DARK_GRAY_COLOR: '#505050',
     $RED_COLOR: '#ff0a45',
     $BG_BOX_COLOR: '#181b25',
     $BORDER_BOX_COLOR: '#252832',

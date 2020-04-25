@@ -7,48 +7,69 @@ import {
     PrintScreen,
     HandoutUpload,
     ShoppingCart,
+    AddressScreen,
+    SetAddress,
+    GetAddressDetails,
+    ConfirmOrder,
 } from '../../../Components/Screens/MainScreens/Add';
 import Icon from 'react-native-vector-icons/Entypo';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
+import OrderList from '../../../Components/Screens/MainScreens/Order/OrderList';
+import MoreScreen from '../../../Components/Screens/MainScreens/More/MoreScreen';
 
 const Tab = createBottomTabNavigator();
 const AddStack = createStackNavigator();
 
 
-function CartScreen() {
+function OrderScreens() {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Cart!</Text>
-        </View>
+        <AddStack.Navigator
+            headerMode={'none'}
+            initialRouteName={'OrderList'}
+        >
+            <AddStack.Screen name={'OrderList'} component={OrderList} />
+        </AddStack.Navigator>
     );
-}
+};
+
+function MoreScreens() {
+    return (
+        <AddStack.Navigator
+            headerMode={'none'}
+            initialRouteName={'MoreScreen'}
+        >
+            <AddStack.Screen name={'MoreScreen'} component={MoreScreen} />
+        </AddStack.Navigator>
+    );
+};
+
 function AddScreens() {
     return (
         <AddStack.Navigator
             headerMode={'none'}
+            initialRouteName={'AddScreen'}
         >
             <AddStack.Screen name={'AddScreen'} component={PrintScreen} />
             <AddStack.Screen name={'HandoutUpload'} component={HandoutUpload} />
             <AddStack.Screen name={'ShoppingCard'} component={ShoppingCart} />
+            <AddStack.Screen name={'Address'} component={AddressScreen} />
+            <AddStack.Screen name={'SetAddress'} component={SetAddress} />
+            <AddStack.Screen name={'GetAddressDetails'} component={GetAddressDetails} />
+            <AddStack.Screen name={'ConfirmOrder'} component={ConfirmOrder} />
         </AddStack.Navigator>
     );
-}
+};
+
 function chatScreen() {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>chat!</Text>
         </View>
     );
-}
+};
 
-function moreScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>more!</Text>
-        </View>
-    );
-}
 
 
 const tabBarIconFunction = ({ route, focused, color, size }) => {
@@ -61,9 +82,9 @@ const tabBarIconFunction = ({ route, focused, color, size }) => {
             title = "خانه";
             break;
 
-        case 'Cart':
+        case 'Order':
             iconName = focused ? 'shopping-cart' : 'shopping-cart';
-            title = "سبد";
+            title = "سفارشات";
             break;
 
         case 'Add':
@@ -109,13 +130,13 @@ export default TabNavigator = () => {
                 showLabel: false,
             }}
         >
-            <Tab.Screen name="More" component={moreScreen} />
+            <Tab.Screen name="More" component={MoreScreens} />
             <Tab.Screen name="Chats" component={chatScreen} />
             <Tab.Screen name="Add" component={AddScreens} options={{
                 tabBarLabel: 'Add',
                 tabBarVisible: false
             }} />
-            <Tab.Screen name="Cart" component={CartScreen} />
+            <Tab.Screen name="Order" component={OrderScreens} />
             <Tab.Screen name="Home" component={Home} />
 
         </Tab.Navigator>

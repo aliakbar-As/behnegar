@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.agontuk.RNFusedLocation.RNFusedLocationPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.reactnativecommunity.picker.RNCPickerPackage;
 import io.github.elyx0.reactnativedocumentpicker.DocumentPickerPackage;
 import org.wonday.pdf.RCTPdfView;
