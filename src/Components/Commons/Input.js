@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput,TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -23,17 +23,25 @@ export const Input = ({
     iconOnclick,
     selectionColor,
     forced,
-    noTitle
+    noTitle,
+    rightIcon, clear
 }) => {
     return (
         <View style={[styles.mainContainer, extraStyle]}>
-            {noTitle ? null : 
-            <Text style={styles.titleStyle}>{title} <Text style={{color: 'red'}}>{forced ? '*' : ''}</Text></Text>}
-            
+            {noTitle ? null :
+                <Text style={styles.titleStyle}>{title} <Text style={{ color: 'red' }}>{forced ? '*' : ''}</Text></Text>}
+
             <View style={[styles.container, style]}>
-                <TouchableOpacity onPress={iconOnclick}>
-                    <Icon name={icon} size={20} color={EStyleSheet.value('$GRAY_COLOR')} />
-                </TouchableOpacity>
+                {!rightIcon ?
+                    <TouchableOpacity onPress={iconOnclick}>
+                        <Icon name={icon} size={20} color={EStyleSheet.value('$GRAY_COLOR')} />
+                    </TouchableOpacity> : null}
+
+                {clear ?
+                    <TouchableOpacity onPress={iconOnclick}>
+                        <Icon name={'ios-close'} size={25} color={EStyleSheet.value('$GRAY_COLOR')} />
+                    </TouchableOpacity> : null}
+
                 <TextInput
                     style={[styles.inputStyle, inputStyle]}
                     value={value}
@@ -52,6 +60,13 @@ export const Input = ({
                     editable={editable}
                     returnKeyType={returnKeyType || 'done'}
                 />
+
+                {rightIcon ?
+                    <TouchableOpacity
+                        style={{ marginLeft: 16, }}
+                        onPress={iconOnclick}>
+                        <Icon name={icon} size={25} color={EStyleSheet.value('$GRAY_COLOR')} />
+                    </TouchableOpacity> : null}
             </View>
         </View>
     )

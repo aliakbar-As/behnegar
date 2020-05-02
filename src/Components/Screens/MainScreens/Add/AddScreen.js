@@ -104,7 +104,10 @@ export const PrintScreen = ({ navigation }) => {
         <View style={styles.container}>
             <ScrollView style={styles.innerContainer}>
 
-                <Header title={'پرینت'} />
+                <Header 
+                // backOnclick={() => navigation.navigate('TabNavigator')}
+                // back
+                title={'پرینت'} />
 
                 <View style={styles.cardContainer}>
                     <Text style={styles.hdrTitles}>

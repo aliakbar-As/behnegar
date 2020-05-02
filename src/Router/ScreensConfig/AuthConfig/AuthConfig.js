@@ -42,16 +42,3 @@ function Authentication() {
     )
 }
 export default Authentication;
-// export default Authentication = createStackNavigator(AuthScreens, {
-//     initialRouteName: 'Auth.Splash',
-//     navigationOptions,
-//     headerMode: 'none',
-//     type: 'modal',
-//     cardStyle: {
-//         backgroundColor: 'transparent',
-//         opacity: 1
-//     },
-//     transparentCard: true,
-//     transitionConfig: (nav) => NavigationService.handleCustomTransition(nav)
-
-// });

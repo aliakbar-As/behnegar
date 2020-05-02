@@ -45,8 +45,8 @@ export const Header = ({
                 {rightIcon ?
                     <TouchableWithoutFeedback onPress={() => rightIconPress()}>
                         <View style={styles.rightIconBox}>
-                            <Text style={[styles.title, { marginRight: 8 }]}>{title}</Text>
-                            <Icon name={rightIcon} size={17} />
+                            <Text style={[styles.title, { marginRight: 20 }]}>{title}</Text>
+                            <Icon name={rightIcon} size={25} color={'#fff'} />
                         </View>
                     </TouchableWithoutFeedback>
                     :
@@ -97,6 +97,7 @@ const styles = EStyleSheet.create({
         fontFamily: '$BOLD_FONT',
         fontSize: 20,
         textAlign: 'center',
+       alignSelf: 'center',
     },
     iconBox: {
         width: 60,
@@ -110,6 +111,5 @@ const styles = EStyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: 'red'
     }
 });

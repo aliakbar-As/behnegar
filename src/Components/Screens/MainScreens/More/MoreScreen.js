@@ -26,16 +26,11 @@ let items = [
     },
     {
         id: 2,
-        title: 'راهنما و پشتیبانی',
+        title: 'درباره بهنگار',
         icon: 'customerservice'
     },
     {
         id: 3,
-        title: 'درباره بهنگار',
-        icon: 'link'
-    },
-    {
-        id: 4,
         title: 'خروج از حساب کاربری',
         icon: 'export'
     },
@@ -43,6 +38,27 @@ let items = [
 
 export default MoreScreen = ({ navigation }) => {
 
+    const itemOnclicks = (item) => {
+        switch (item) {
+            case 0:
+                console.log('edit profile');
+                navigation.navigate('Profile');
+                break;
+            case 1:
+                console.log('gift');
+                break;
+            case 2:
+                navigation.navigate('AboutUs');
+                console.log('about us');
+                break;
+            case 3:
+                console.log('exit');
+                break;
+            default:
+                console.log('items onclick default');
+                break;
+        };
+    };
 
     return (
         <View style={styles.container}>
@@ -62,7 +78,7 @@ export default MoreScreen = ({ navigation }) => {
                         title={'کیف پول'}
                         cost={30000}
                         imageBg={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR8DLWkc6WTFf4JjXhfP4f5O4i4jkF9LjJ1UM-dRPZ6r2ZcYJin&usqp=CAU' }}
-                        onPress={() => console.log('wallet')}
+                        onPress={() => navigation.navigate('WalletTabs')}
                         icon={'wallet'}
                     />
 
@@ -82,7 +98,7 @@ export default MoreScreen = ({ navigation }) => {
                     {items.map(item => {
                         return (
                             <TouchableHighlight
-                                onPress={() => console.log(item.title)}
+                                onPress={() => itemOnclicks(item.id)}
                                 underlayColor={'transparent'}>
                                 <View key={item.id} style={[styles.cardsection, {
                                     borderTopWidth: item.id === 0 ? 1 : 0,

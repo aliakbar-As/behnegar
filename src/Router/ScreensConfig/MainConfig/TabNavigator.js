@@ -2,7 +2,16 @@ import React from 'react';
 import { View, Text, } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Entypo';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import { createStackNavigator } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-community/async-storage';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+
+
 import Home from '../../../Components/Screens/MainScreens/Home';
+
+
 import {
     PrintScreen,
     HandoutUpload,
@@ -12,12 +21,16 @@ import {
     GetAddressDetails,
     ConfirmOrder,
 } from '../../../Components/Screens/MainScreens/Add';
-import Icon from 'react-native-vector-icons/Entypo';
-import EStyleSheet from 'react-native-extended-stylesheet';
-import { createStackNavigator } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-community/async-storage';
+
 import OrderList from '../../../Components/Screens/MainScreens/Order/OrderList';
+
 import MoreScreen from '../../../Components/Screens/MainScreens/More/MoreScreen';
+
+
+import Profile from '../../../Components/Screens/MainScreens/More/Profile/Profile';
+import EditProfile from '../../../Components/Screens/MainScreens/More/Profile/EditProfile';
+import AboutUs from '../../../Components/Screens/MainScreens/More/AboutUs/AboutUs';
+import WalletTabs from '../../../Components/Screens/MainScreens/More/Wallet/WalletTabs';
 
 const Tab = createBottomTabNavigator();
 const AddStack = createStackNavigator();
@@ -34,6 +47,7 @@ function OrderScreens() {
     );
 };
 
+
 function MoreScreens() {
     return (
         <AddStack.Navigator
@@ -41,6 +55,10 @@ function MoreScreens() {
             initialRouteName={'MoreScreen'}
         >
             <AddStack.Screen name={'MoreScreen'} component={MoreScreen} />
+            <AddStack.Screen name={'Profile'} component={Profile} />
+            <AddStack.Screen name={'EditProfile'} component={EditProfile} />
+            <AddStack.Screen name={'AboutUs'} component={AboutUs} />
+            <AddStack.Screen name={'WalletTabs'} component={WalletTabs} />
         </AddStack.Navigator>
     );
 };

@@ -80,9 +80,12 @@ target 'jozveh' do
 
   pod 'react-native-document-picker', :path => '../node_modules/react-native-document-picker'
 
-  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+  pod 'Picker', :path => '../node_modules/react-native-picker'
+
+  pod 'RNCPicker', :path => '../node_modules/@react-native-community/picker'
 
   target 'jozvehTests' do
     inherit! :complete

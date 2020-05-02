@@ -6,7 +6,7 @@ import RouterComponent from './Router/Routes';
 EStyleSheet.build({
     // Colors variables
     $DARK_COLOR: '#12141d',
-    $GREEN_COLOR: '#006241',
+    $GREEN_COLOR: '#0c3b2e',
     $BLUE_COLOR: '#0a7fff',
     $YELLOW_COLOR: '#e7b538',
     $GRAY_COLOR: '#8b8e9f',

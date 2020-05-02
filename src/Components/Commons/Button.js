@@ -38,7 +38,7 @@ const styles = EStyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         alignSelf: 'center',
-        backgroundColor: '#006241',
+        backgroundColor: '$GREEN_COLOR',
         marginVertical: 10,
     },
     textBtn: {
